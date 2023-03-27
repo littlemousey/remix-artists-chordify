@@ -1,4 +1,5 @@
-import { ActionFunction, LinksFunction, LoaderFunction, redirect } from "@remix-run/node";
+import type { ActionFunction, LinksFunction, LoaderFunction} from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { getArtistSongs } from "~/models/artists.server";
