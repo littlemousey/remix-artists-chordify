@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import { ActionFunction, LinksFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { getArtistSongs } from "~/models/artists.server";
@@ -18,6 +18,15 @@ export const loader: LoaderFunction = async ({params}) => {
   });
 };
 
+export const action: ActionFunction = async({ request }) => {
+  const formData = await request.formData();
+  const artistName = formData.get('artistName');
+
+  if (typeof artistName === 'string') {
+    return redirect(`/artists/artistSongs/${artistName}`);
+  }
+};
+
 export default function Artist() {
   const { data } = useLoaderData() as LoaderData;
 
@@ -26,7 +35,7 @@ export default function Artist() {
       <h1>
         From which artist do you want songs?
 	  </h1>
-	<Form className="search-form">
+	<Form method="post" className="search-form">
 		<input name="artistName" type="text" />
 		<button type="submit">Search!</button>
 	</Form>

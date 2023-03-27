@@ -28,7 +28,7 @@ export const action: ActionFunction = async({ request }) => {
   const artistName = formData.get('artistName');
 
   if (typeof artistName === 'string') {
-    return redirect(`/`);
+    return redirect(`/artists/${artistName}`);
   }
 };
 
@@ -40,7 +40,7 @@ export default function Artist() {
       <h1>
         From which artist do you want songs?
 	  </h1>
-	<Form className="search-form">
+	<Form method="post" className="search-form">
 		<input type="text" name="artistName" />
 		<button type="submit">Search!</button>
 	</Form>
