@@ -1,6 +1,6 @@
 import type { ActionFunction, LinksFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, Link, useLoaderData } from "@remix-run/react";
 import { redirect } from "react-router-dom";
 import { getArtists } from "~/models/search.server";
 import artistStyles from "~/styles/artists.css";
@@ -46,10 +46,12 @@ export default function Artist() {
 	</Form>
     <div className="container">
         {data.map((artist) => (
-      <div key={artist.slug}>
-        <img className="profile-picture" src={artist.imageUrl} alt={artist.slug} />
-        <span className="artist-name">{artist.slug}</span>
-      </div>
+      <Link to={`/artists/artistSongs/${artist.name}`} key={artist.slug}>
+        <div className="artist-profile">
+          <img className="profile-picture" src={artist.imageUrl} alt={artist.slug} />
+          <span className="artist-name">{artist.slug}</span>
+        </div>
+      </Link>
         ))}
       </div>
     </main>

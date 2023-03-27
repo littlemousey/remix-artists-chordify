@@ -11,3 +11,16 @@
 h1 {
 	color: white;
 }
+
+.container {
+	column-count: 4;
+	column-gap: 10px;
+}
+
+.artist-profile {
+	text-align: left;
+}
+
+a {
+	text-decoration: none;
+}
