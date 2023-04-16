@@ -15,9 +15,6 @@ export default function IndexRoute() {
   return (
     <div className="container">
       <div className="content">
-        <h1>
-          Remix try out project
-        </h1>
         <nav>
           <button className="glowing-btn">
             <span className="glowing-txt">
