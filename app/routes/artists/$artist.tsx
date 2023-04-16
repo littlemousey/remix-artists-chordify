@@ -5,11 +5,13 @@ import { redirect } from "react-router-dom";
 import { getArtists } from "~/models/search.server";
 import artistStyles from "~/styles/artists.css";
 import songsStyles from "~/styles/songs.css";
+import searchStyles from "~/styles/search.css";
 
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: songsStyles },
-    { rel: "stylesheet", href: artistStyles }
+    { rel: "stylesheet", href: artistStyles },
+    { rel: "stylesheet", href: searchStyles }
 ];
 };
 
@@ -37,21 +39,25 @@ export default function Artist() {
 
   return (
     <main>
-      <h1>
-        From which artist do you want songs?
-	  </h1>
-	<Form method="post" className="search-form">
-		<input type="text" name="artistName" />
-		<button type="submit">Search!</button>
-	</Form>
-    <div className="container">
-        {data.map((artist) => (
-      <Link to={`/artists/artistSongs/${artist.slug}`} key={artist.slug}>
-        <div className="artist-profile">
-          <img className="profile-picture" src={artist.imageUrl} alt={artist.slug} />
-          <span className="artist-name">{artist.slug}</span>
+      <h1>From which artist do you want songs?</h1>
+      <Form method="post" className="search-form searchWrapper">
+        <div className="search">
+          <input type="text" name="artistName" placeholder="madonna" className="searchTerm" />
+          <button type="submit" className="searchButton">🔍</button>
         </div>
-      </Link>
+      </Form>
+      <div className="container">
+        {data.map((artist) => (
+          <Link to={`/artists/artistSongs/${artist.slug}`} key={artist.slug}>
+            <div className="artist-profile">
+              <img
+                className="profile-picture"
+                src={artist.imageUrl}
+                alt={artist.slug}
+              />
+              <span className="artist-name">{artist.slug}</span>
+            </div>
+          </Link>
         ))}
       </div>
     </main>
