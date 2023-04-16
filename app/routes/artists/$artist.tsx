@@ -46,7 +46,7 @@ export default function Artist() {
 	</Form>
     <div className="container">
         {data.map((artist) => (
-      <Link to={`/artists/artistSongs/${artist.name}`} key={artist.slug}>
+      <Link to={`/artists/artistSongs/${artist.slug}`} key={artist.slug}>
         <div className="artist-profile">
           <img className="profile-picture" src={artist.imageUrl} alt={artist.slug} />
           <span className="artist-name">{artist.slug}</span>
